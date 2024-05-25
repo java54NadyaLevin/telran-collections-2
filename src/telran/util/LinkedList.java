@@ -21,6 +21,7 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public boolean add(T obj) {
+		//O[logN] ? since getNode can be called ?
 		Node<T> node = new Node<>(obj);
 		addNode(size, node);
 		return true;
@@ -28,6 +29,7 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public boolean remove(T pattern) {
+		//O[NlogN]? 
 		int index = indexOf(pattern);
 		boolean res = false;
 		if (index > -1) {
@@ -39,16 +41,19 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(T pattern) {
+		//O[N]
 		return indexOf(pattern) == -1 ? false : true;
 	}
 
 	@Override
 	public int size() {
+		//O[1]
 		return size;
 	}
 
 	@Override
 	public Iterator<T> iterator() {
+		//O[1]
 		return new NodeIterator();
 	}
 
@@ -57,12 +62,14 @@ public class LinkedList<T> implements List<T> {
 
 		@Override
 		public boolean hasNext() {
+			//O[1]
 
 			return current != null;
 		}
 
 		@Override
 		public T next() {
+			//O[1]
 			if (!hasNext()) {
 				throw new NoSuchElementException();
 			}
@@ -76,12 +83,14 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public T get(int index) {
+		//O[logN] ?
 		List.checkIndex(index, size, true);
 		return getNode(index).data;
 	}
 
 	@Override
 	public void add(int index, T obj) {
+		//O[logN]?
 		List.checkIndex(index, size, false);
 		Node<T> node = new Node<>(obj);
 		addNode(index, node);
@@ -90,6 +99,7 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public T remove(int index) {
+		//O[N]? 
 		List.checkIndex(index, size, true);
 		T removedNode = removeNode(index);
 		return removedNode;
@@ -139,7 +149,7 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public int indexOf(T pattern) {
-
+		//O[N]
 		Node<T> current = head;
 
 		int index = 0;
@@ -153,6 +163,7 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public int lastIndexOf(T pattern) {
+		//O[N]
 		Node<T> current = tail;
 
 		int index = size - 1;

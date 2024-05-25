@@ -28,9 +28,12 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public boolean remove(T pattern) {
+		int index = indexOf(pattern);
 		boolean res = false;
-		
-		// removeNode(pattern);
+		if (index > -1) {
+			res = true;
+			remove(index);
+		}
 		return res;
 	}
 
@@ -87,8 +90,51 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public T remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		List.checkIndex(index, size, true);
+		T removedNode = removeNode(index);
+		return removedNode;
+	}
+
+	private T removeNode(int index) {
+		T removedNode = null;
+		if (index == 0) {
+			removedNode = removeHead(index);
+		} else if (index == size - 1) {
+			removedNode = removeTail(index);
+		} else {
+			removedNode = removeMiddle(index);
+		}
+		size--;
+		return removedNode;
+	}
+
+	private T removeMiddle(int index) {
+
+		Node<T> toRemove = getNode(index);
+		T removedNode = toRemove.data;
+		Node<T> nodePrev = toRemove.prev;
+		Node<T> nodeNext = toRemove.next;
+		nodePrev.next = null;
+		nodePrev.next = nodeNext;
+		nodeNext.prev = nodePrev;
+
+		return removedNode;
+	}
+
+	private T removeTail(int index) {
+		Node<T> toRemove = getNode(index);
+		T removedNode = toRemove.data;
+		tail = tail.prev;
+		tail.next = null;
+		return removedNode;
+	}
+
+	private T removeHead(int index) {
+		Node<T> toRemove = getNode(index);
+		T removedNode = toRemove.data;
+		head = head.next;
+		head.prev = null;
+		return removedNode;
 	}
 
 	@Override
@@ -102,7 +148,7 @@ public class LinkedList<T> implements List<T> {
 			current = current.next;
 		}
 
-		return current != null? index : -1;
+		return current != null ? index : -1;
 	}
 
 	@Override
@@ -115,7 +161,7 @@ public class LinkedList<T> implements List<T> {
 			current = current.prev;
 		}
 
-		return current != null? index : -1;
+		return current != null ? index : -1;
 
 	}
 

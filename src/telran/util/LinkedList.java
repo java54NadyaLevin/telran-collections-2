@@ -21,7 +21,7 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public boolean add(T obj) {
-		//O[logN] ? since getNode can be called ?
+		//O[N]?
 		Node<T> node = new Node<>(obj);
 		addNode(size, node);
 		return true;
@@ -29,7 +29,7 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public boolean remove(T pattern) {
-		//O[NlogN]? 
+		//O[N]? 
 		int index = indexOf(pattern);
 		boolean res = false;
 		if (index > -1) {
@@ -83,14 +83,14 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public T get(int index) {
-		//O[logN] ?
+		//O[N] ?
 		List.checkIndex(index, size, true);
 		return getNode(index).data;
 	}
 
 	@Override
 	public void add(int index, T obj) {
-		//O[logN]?
+		//O[N]?
 		List.checkIndex(index, size, false);
 		Node<T> node = new Node<>(obj);
 		addNode(index, node);

@@ -131,8 +131,7 @@ public class LinkedList<T> implements List<T> {
 	}
 
 	private void cleaner(Node<T> toRemove) {
-		toRemove.prev = null;
-		toRemove.next = null;
+		toRemove.data = null;
 	}
 
 	private T removeTail(int index) {

@@ -124,7 +124,6 @@ public class LinkedList<T> implements List<T> {
 		T removedNode = toRemove.data;
 		Node<T> nodePrev = toRemove.prev;
 		Node<T> nodeNext = toRemove.next;
-		nodePrev.next = null;
 		nodePrev.next = nodeNext;
 		nodeNext.prev = nodePrev;
 

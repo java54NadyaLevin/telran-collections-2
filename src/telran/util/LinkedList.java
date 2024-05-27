@@ -114,6 +114,7 @@ public class LinkedList<T> implements List<T> {
 		} else {
 			removedNode = removeMiddle(index);
 		}
+		cleaner(new Node(removedNode));
 		size--;
 		return removedNode;
 	}
@@ -126,7 +127,6 @@ public class LinkedList<T> implements List<T> {
 		Node<T> nodeNext = toRemove.next;
 		nodePrev.next = nodeNext;
 		nodeNext.prev = nodePrev;
-		cleaner(toRemove);
 		return removedNode;
 	}
 
@@ -141,7 +141,6 @@ public class LinkedList<T> implements List<T> {
 		T removedNode = toRemove.data;
 		tail = tail.prev;
 		tail.next = null;
-		cleaner(toRemove);
 		return removedNode;
 	}
 
@@ -150,7 +149,6 @@ public class LinkedList<T> implements List<T> {
 		T removedNode = toRemove.data;
 		head = head.next;
 		head.prev = null;
-		cleaner(toRemove);
 		return removedNode;
 	}
 
